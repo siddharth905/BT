@@ -1,0 +1,29 @@
+//SPDX-License-Identifier: UNLICENSED
+
+
+pragma solidity ^0.8.0;
+
+contract Bank{
+//
+  //  address puublic manager;
+    //constructor(){
+      //  manager=msg.sender;
+    //}
+//  0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B
+
+    uint256 balance = 0;
+
+function withdraw() payable public{
+      require(balance > 0, "You don't have enough balance");
+      payable(msg.sender).transfer(balance);
+      balance=0;
+} 
+function deposite() public payable {
+    require(msg.value > 0, "Deposite amount should be grater");
+    balance += msg.value;
+}
+
+function showBalance() public view returns(uint){
+    return balance;
+}
+}
